@@ -24,11 +24,17 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border/50 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
-      {/* Background decoration */}
+    <footer className="relative border-t border-white/20 overflow-hidden">
+      {/* Diffusion gradient background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-0 left-1/4 h-[300px] w-[300px] rounded-full bg-emerald-500/5 blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 h-[250px] w-[250px] rounded-full bg-teal-500/5 blur-3xl" />
+        {/* White diffusion */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-white/60 blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 h-[300px] w-[300px] rounded-full bg-white/40 blur-[80px]" />
+        <div className="absolute bottom-0 right-1/4 h-[250px] w-[250px] rounded-full bg-white/40 blur-[80px]" />
+        
+        {/* Subtle color accents */}
+        <div className="absolute bottom-0 left-1/3 h-[200px] w-[200px] rounded-full bg-emerald-400/8 blur-[60px]" />
+        <div className="absolute bottom-0 right-1/3 h-[200px] w-[200px] rounded-full bg-teal-400/8 blur-[60px]" />
       </div>
       
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">

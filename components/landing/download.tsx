@@ -5,12 +5,18 @@ import { AppleIcon, GooglePlayIcon } from "@/components/icons/store-icons";
 
 export function Download() {
   return (
-    <section id="download" className="py-24 lg:py-32 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
-      {/* Animated background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[700px] w-[900px] rounded-full bg-gradient-to-t from-emerald-500/10 to-teal-500/5 blur-3xl animate-pulse-glow" />
-        <div className="absolute top-1/4 left-1/4 h-[300px] w-[300px] rounded-full bg-emerald-500/5 blur-3xl animate-float" style={{ animationDelay: "-5s" }} />
-        <div className="absolute top-1/3 right-1/4 h-[250px] w-[250px] rounded-full bg-teal-500/5 blur-3xl animate-float" style={{ animationDelay: "-10s" }} />
+    <section id="download" className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Diffusion gradient background */}
+      <div className="absolute inset-0 -z-10">
+        {/* White diffusion - creates soft, ethereal glow */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[800px] w-[1000px] rounded-full bg-white/70 blur-[150px]" />
+        <div className="absolute top-1/4 left-1/4 h-[400px] w-[400px] rounded-full bg-white/60 blur-[100px] animate-float" style={{ animationDelay: "-5s" }} />
+        <div className="absolute top-1/3 right-1/4 h-[350px] w-[350px] rounded-full bg-white/50 blur-[100px] animate-float" style={{ animationDelay: "-10s" }} />
+        
+        {/* Emerald/teal accents */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-gradient-to-t from-emerald-400/15 to-teal-400/8 blur-[80px] animate-pulse-glow" />
+        <div className="absolute top-1/2 left-1/3 h-[300px] w-[300px] rounded-full bg-emerald-400/10 blur-[60px]" />
+        <div className="absolute top-1/2 right-1/3 h-[300px] w-[300px] rounded-full bg-teal-400/10 blur-[60px]" />
       </div>
       
       {/* Mesh gradient overlay */}
@@ -34,13 +40,15 @@ export function Download() {
           {/* App Store Button */}
           <Link
             href="https://apps.apple.com"
-            className="group relative inline-flex items-center gap-4 rounded-2xl bg-gradient-to-r from-primary to-primary/90 px-8 py-4 text-primary-foreground hover:from-primary/90 hover:to-primary/80 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/20 shadow-lg overflow-hidden"
+            className="group relative inline-flex items-center gap-4 rounded-2xl bg-zinc-900 px-8 py-4 text-white hover:bg-zinc-800 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/20 shadow-xl overflow-hidden ring-1 ring-white/10"
           >
             {/* Shimmer effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+            {/* Inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
             <AppleIcon className="h-10 w-10 relative" />
             <div className="text-left relative">
-              <div className="text-xs opacity-70 font-medium uppercase tracking-wide">Download on the</div>
+              <div className="text-xs text-white/60 font-medium uppercase tracking-wide">Download on the</div>
               <div className="text-xl font-bold -mt-0.5">App Store</div>
             </div>
             <ArrowRight className="h-5 w-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all relative" />
@@ -49,13 +57,15 @@ export function Download() {
           {/* Google Play Button */}
           <Link
             href="https://play.google.com"
-            className="group relative inline-flex items-center gap-4 rounded-2xl bg-gradient-to-r from-primary to-primary/90 px-8 py-4 text-primary-foreground hover:from-primary/90 hover:to-primary/80 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/20 shadow-lg overflow-hidden"
+            className="group relative inline-flex items-center gap-4 rounded-2xl bg-zinc-900 px-8 py-4 text-white hover:bg-zinc-800 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/20 shadow-xl overflow-hidden ring-1 ring-white/10"
           >
             {/* Shimmer effect */}
             <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+            {/* Inner glow */}
+            <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent" />
             <GooglePlayIcon className="h-10 w-10 relative" />
             <div className="text-left relative">
-              <div className="text-xs opacity-70 font-medium uppercase tracking-wide">Get it on</div>
+              <div className="text-xs text-white/60 font-medium uppercase tracking-wide">Get it on</div>
               <div className="text-xl font-bold -mt-0.5">Google Play</div>
             </div>
             <ArrowRight className="h-5 w-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all relative" />

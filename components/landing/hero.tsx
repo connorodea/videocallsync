@@ -14,8 +14,15 @@ export function Hero() {
       {/* Animated Glow Orbs */}
       <GlowOrbs />
       
+      {/* White diffusion layer */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[800px] w-[1200px] rounded-full bg-white/80 blur-[180px]" />
+        <div className="absolute top-1/4 left-1/4 h-[500px] w-[500px] rounded-full bg-white/60 blur-[120px]" />
+        <div className="absolute top-1/3 right-1/4 h-[400px] w-[400px] rounded-full bg-white/50 blur-[100px]" />
+      </div>
+      
       {/* Mesh gradient overlay */}
-      <div className="absolute inset-0 -z-10 mesh-gradient" />
+      <div className="absolute inset-0 -z-10 mesh-gradient opacity-70" />
       
       {/* Noise texture for depth */}
       <div className="absolute inset-0 -z-10 noise-overlay pointer-events-none" />
@@ -142,7 +149,7 @@ export function Hero() {
               </div>
             </div>
             {/* Label */}
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-muted to-muted/80 border border-border/50 shadow-lg backdrop-blur-sm">
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg">
               <AppleIcon className="h-4 w-4" />
               <span className="text-sm font-semibold">iPhone</span>
             </div>
@@ -219,7 +226,7 @@ export function Hero() {
               </div>
             </div>
             {/* Label */}
-            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-muted to-muted/80 border border-border/50 shadow-lg backdrop-blur-sm">
+            <div className="absolute -bottom-10 left-1/2 -translate-x-1/2 flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 backdrop-blur-xl border border-white/50 shadow-lg">
               <AndroidIcon className="h-4 w-4" />
               <span className="text-sm font-semibold">Android</span>
             </div>
@@ -228,7 +235,7 @@ export function Hero() {
 
         {/* Social proof */}
         <div className="mt-24 text-center">
-          <div className="inline-flex flex-col items-center gap-6 px-8 py-6 rounded-3xl bg-gradient-to-b from-muted/50 to-muted/30 border border-border/50 backdrop-blur-sm">
+          <div className="inline-flex flex-col items-center gap-6 px-8 py-6 rounded-3xl bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl shadow-emerald-500/5">
             <p className="text-sm text-muted-foreground font-medium">Trusted by users worldwide</p>
             <div className="flex items-center justify-center gap-1">
               {[...Array(5)].map((_, i) => (

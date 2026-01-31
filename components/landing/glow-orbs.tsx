@@ -17,24 +17,27 @@ export function GlowOrbs() {
   const [orbs, setOrbs] = useState<Orb[]>([]);
 
   useEffect(() => {
+    // Mixed palette with white, emerald, and teal
     const colors = [
-      "from-emerald-500/25 to-teal-500/15",
-      "from-teal-400/20 to-cyan-500/12",
-      "from-emerald-400/22 to-emerald-600/12",
+      "from-white/70 to-white/30",
+      "from-emerald-400/25 to-teal-400/15",
+      "from-white/60 to-emerald-100/30",
+      "from-teal-400/20 to-cyan-400/12",
+      "from-white/50 to-teal-100/25",
+      "from-emerald-400/22 to-emerald-500/12",
+      "from-white/55 to-white/20",
       "from-cyan-400/18 to-teal-400/12",
-      "from-green-500/20 to-emerald-400/10",
-      "from-teal-500/22 to-emerald-500/15",
     ];
 
-    const generated: Orb[] = Array.from({ length: 8 }, (_, i) => ({
+    const generated: Orb[] = Array.from({ length: 10 }, (_, i) => ({
       id: i,
-      x: 10 + Math.random() * 80,
-      y: 10 + Math.random() * 80,
-      size: 350 + Math.random() * 500,
-      duration: 18 + Math.random() * 12,
-      delay: Math.random() * -15,
+      x: 5 + Math.random() * 90,
+      y: 5 + Math.random() * 90,
+      size: 400 + Math.random() * 600,
+      duration: 20 + Math.random() * 15,
+      delay: Math.random() * -18,
       color: colors[i % colors.length],
-      morph: i % 3 === 0,
+      morph: i % 4 === 0,
     }));
 
     setOrbs(generated);
@@ -59,13 +62,22 @@ export function GlowOrbs() {
         />
       ))}
       
-      {/* Additional rotating gradient rings */}
+      {/* White diffusion orbs - static, large, soft */}
+      <div className="absolute top-0 left-1/3 w-[700px] h-[700px] rounded-full bg-white/50 blur-[150px]" />
+      <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] rounded-full bg-white/40 blur-[120px]" />
+      <div className="absolute top-1/2 left-0 w-[400px] h-[400px] rounded-full bg-white/35 blur-[100px]" />
+      
+      {/* Rotating gradient rings with white */}
       <div 
-        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full border border-emerald-500/10 animate-rotate-slow"
+        className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full border border-white/20 animate-rotate-slow"
+        style={{ animationDuration: "35s" }}
+      />
+      <div 
+        className="absolute top-1/3 right-1/3 w-[500px] h-[500px] rounded-full border border-emerald-400/15 animate-rotate-slow"
         style={{ animationDuration: "30s" }}
       />
       <div 
-        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full border border-teal-500/10 animate-rotate-slow"
+        className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full border border-teal-400/15 animate-rotate-slow"
         style={{ animationDuration: "25s", animationDirection: "reverse" }}
       />
     </div>

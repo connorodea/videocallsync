@@ -47,11 +47,22 @@ const features = [
 
 export function Features() {
   return (
-    <section id="features" className="relative py-24 lg:py-32 bg-gradient-to-b from-background to-muted/30 overflow-hidden">
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-emerald-500/5 blur-3xl animate-pulse-glow" />
-        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-teal-500/5 blur-3xl animate-pulse-glow" style={{ animationDelay: "-1.5s" }} />
+    <section id="features" className="relative py-24 lg:py-32 overflow-hidden">
+      {/* Diffusion gradient background */}
+      <div className="absolute inset-0 -z-10">
+        {/* Base gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background to-muted/20" />
+        
+        {/* White diffusion orbs */}
+        <div className="absolute top-0 left-1/3 h-[600px] w-[600px] rounded-full bg-white/60 blur-[120px] animate-pulse-glow" />
+        <div className="absolute top-1/4 right-1/4 h-[500px] w-[500px] rounded-full bg-white/50 blur-[100px] animate-pulse-glow" style={{ animationDelay: "-2s" }} />
+        
+        {/* Emerald/teal diffusion */}
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-emerald-400/10 blur-[80px] animate-pulse-glow" />
+        <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 h-[400px] w-[400px] rounded-full bg-teal-400/10 blur-[80px] animate-pulse-glow" style={{ animationDelay: "-1.5s" }} />
+        
+        {/* Mesh overlay */}
+        <div className="absolute inset-0 mesh-gradient opacity-60" />
       </div>
       
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -75,13 +86,16 @@ export function Features() {
             {features.map((feature, index) => (
               <div
                 key={feature.name}
-                className="group relative rounded-2xl border border-border/50 bg-card/80 backdrop-blur-sm p-6 hover:border-emerald-500/30 hover:shadow-xl hover:shadow-emerald-500/5 transition-all duration-500"
+                className="group relative rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 hover:border-emerald-500/40 hover:bg-white/80 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-emerald-500/0 to-teal-500/0 group-hover:from-emerald-500/5 group-hover:to-teal-500/5 transition-all duration-500" />
+                {/* Inner glow */}
+                <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-white/80 via-transparent to-emerald-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 
-                <div className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl ${feature.color} transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg`}>
+                {/* Subtle top highlight */}
+                <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white to-transparent" />
+                
+                <div className={`relative inline-flex h-12 w-12 items-center justify-center rounded-xl ${feature.color} transition-all duration-300 group-hover:scale-110 group-hover:shadow-lg ring-1 ring-white/50`}>
                   <feature.icon className="h-6 w-6" aria-hidden="true" />
                 </div>
                 <h3 className="mt-5 text-lg font-semibold group-hover:text-emerald-600 transition-colors">

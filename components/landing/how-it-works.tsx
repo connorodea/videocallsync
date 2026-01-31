@@ -34,9 +34,19 @@ const steps = [
 export function HowItWorks() {
   return (
     <section id="how-it-works" className="py-24 lg:py-32 relative overflow-hidden">
-      {/* Background decoration */}
+      {/* Diffusion gradient background */}
       <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-emerald-500/5 blur-3xl" />
+        {/* White diffusion orbs */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 h-[700px] w-[700px] rounded-full bg-white/70 blur-[120px]" />
+        <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-white/50 blur-[100px]" />
+        <div className="absolute top-1/3 right-0 h-[500px] w-[500px] rounded-full bg-white/40 blur-[100px]" />
+        
+        {/* Emerald/teal accents */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-emerald-400/8 blur-[80px]" />
+        <div className="absolute bottom-1/4 right-1/4 h-[400px] w-[400px] rounded-full bg-teal-400/8 blur-[80px]" />
+        
+        {/* Mesh gradient overlay */}
+        <div className="absolute inset-0 mesh-gradient opacity-40" />
       </div>
       
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
@@ -73,13 +83,14 @@ export function HowItWorks() {
                   {/* Step circle */}
                   <div className="relative mx-auto mb-8">
                     {/* Glow effect */}
-                    <div className="absolute inset-0 rounded-full bg-emerald-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150" />
+                    <div className="absolute inset-0 rounded-full bg-white/50 blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150" />
+                    <div className="absolute inset-0 rounded-full bg-emerald-400/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-125" />
                     
-                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-b from-card to-card/80 border-2 border-border group-hover:border-emerald-500/50 transition-all duration-500 shadow-xl group-hover:shadow-emerald-500/20">
+                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-white/80 backdrop-blur-sm border-2 border-white/60 group-hover:border-emerald-400/50 transition-all duration-500 shadow-xl shadow-emerald-500/10 group-hover:shadow-emerald-500/20 group-hover:bg-white/90">
                       <step.icon className="h-11 w-11 text-muted-foreground group-hover:text-emerald-500 transition-all duration-300 group-hover:scale-110" />
                     </div>
                     {/* Number badge */}
-                    <div className="absolute -top-1 -right-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white text-sm font-bold shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+                    <div className="absolute -top-1 -right-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white text-sm font-bold shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform ring-2 ring-white/50">
                       {index + 1}
                     </div>
                   </div>

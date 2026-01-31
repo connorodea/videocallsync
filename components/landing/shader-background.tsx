@@ -73,15 +73,22 @@ export function ShaderBackground() {
         float noise2 = snoise(uv * 3.5 - u_time * 0.12 + 100.0);
         float noise3 = snoise(uv * 1.5 + u_time * 0.06 + 200.0);
         float noise4 = snoise(uv * 5.0 + u_time * 0.15 + 300.0);
+        float noise5 = snoise(uv * 1.0 + u_time * 0.04 + 400.0);
         
-        // Richer emerald/teal/cyan color palette
+        // Color palette with white, emerald, and teal
+        vec3 white = vec3(1.0, 1.0, 1.0);
+        vec3 offWhite = vec3(0.98, 0.99, 0.98);
         vec3 color1 = vec3(0.04, 0.55, 0.45);  // Vibrant teal
         vec3 color2 = vec3(0.06, 0.72, 0.55);  // Bright emerald
         vec3 color3 = vec3(0.02, 0.35, 0.42);  // Deep ocean teal
         vec3 color4 = vec3(0.08, 0.82, 0.62);  // Mint emerald
-        vec3 color5 = vec3(0.03, 0.48, 0.58);  // Cyan accent
+        vec3 mintWhite = vec3(0.92, 0.98, 0.96); // Mint white
         
-        // Create morphing blobs
+        // Create morphing white blobs
+        float whiteBlob1 = smoothstep(0.2, 0.8, sin(uv.x * 2.5 + u_time * 0.3) * sin(uv.y * 2.0 + u_time * 0.25) + noise5 * 0.5);
+        float whiteBlob2 = smoothstep(0.3, 0.7, sin(uv.x * 1.5 - u_time * 0.2) * cos(uv.y * 1.8 + u_time * 0.35) + noise1 * 0.4);
+        
+        // Create color blobs
         float blob1 = smoothstep(0.3, 0.7, sin(uv.x * 3.14159 + u_time * 0.5) * sin(uv.y * 3.14159 + u_time * 0.3) + noise1);
         float blob2 = smoothstep(0.2, 0.8, sin(uv.x * 2.0 - u_time * 0.4) * cos(uv.y * 2.5 + u_time * 0.6) + noise2);
         
@@ -90,32 +97,41 @@ export function ShaderBackground() {
         float blend2 = smoothstep(-0.3, 0.7, noise2);
         float blend3 = smoothstep(-0.4, 0.6, noise3);
         
-        vec3 color = mix(color1, color2, blend1);
-        color = mix(color, color3, blend2 * 0.6);
-        color = mix(color, color4, blend3 * 0.4);
-        color = mix(color, color5, blob1 * 0.3);
+        // Start with white base in certain areas
+        vec3 color = mix(mintWhite, color1, blend1 * 0.7);
+        color = mix(color, color2, blend1 * 0.5);
+        color = mix(color, color3, blend2 * 0.4);
+        color = mix(color, color4, blend3 * 0.3);
+        
+        // Add white diffusion zones
+        color = mix(color, white, whiteBlob1 * 0.6);
+        color = mix(color, offWhite, whiteBlob2 * 0.5);
+        
+        // Add soft white glow from top
+        float topGlow = smoothstep(0.7, 0.0, uv.y);
+        color = mix(color, white, topGlow * 0.4);
         
         // Add pulsing glow spots
         float glow = snoise(uv * 4.0 + u_time * 0.2);
-        glow = pow(smoothstep(0.2, 0.9, glow), 2.0) * 0.2;
-        color += glow * color4;
+        glow = pow(smoothstep(0.2, 0.9, glow), 2.0) * 0.15;
+        color += glow * mintWhite;
         
-        // Add subtle sparkles
-        float sparkle = snoise(uv * 15.0 + u_time * 0.5);
-        sparkle = pow(max(0.0, sparkle), 8.0) * 0.3;
-        color += sparkle;
+        // Add subtle white sparkles
+        float sparkle = snoise(uv * 12.0 + u_time * 0.4);
+        sparkle = pow(max(0.0, sparkle), 6.0) * 0.25;
+        color = mix(color, white, sparkle);
         
-        // Radial gradient for depth
-        float radial = 1.0 - length((uv - vec2(0.5, 0.3)) * vec2(1.2, 1.0));
+        // Radial gradient for depth - white center
+        float radial = 1.0 - length((uv - vec2(0.5, 0.35)) * vec2(1.0, 0.8));
         radial = smoothstep(0.0, 1.0, radial);
-        color *= 0.8 + radial * 0.4;
+        color = mix(color, white, radial * 0.35);
         
         // Fade at edges for blending
-        float vignette = 1.0 - length((uv - 0.5) * 1.3);
-        vignette = smoothstep(0.0, 0.8, vignette);
+        float vignette = 1.0 - length((uv - 0.5) * 1.2);
+        vignette = smoothstep(0.0, 0.9, vignette);
         
         // Enhanced opacity with vignette
-        float alpha = 0.18 * vignette;
+        float alpha = 0.22 * vignette;
         
         gl_FragColor = vec4(color, alpha);
       }
