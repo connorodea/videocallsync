@@ -2,16 +2,23 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Video, User } from "lucide-react";
 import { AppleIcon, AndroidIcon } from "@/components/icons/store-icons";
+import { ShaderBackground } from "./shader-background";
+import { GlowOrbs } from "./glow-orbs";
 
 export function Hero() {
   return (
     <section className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[800px] w-[1200px] rounded-full bg-gradient-to-b from-accent/8 to-transparent blur-3xl" />
-        <div className="absolute top-1/3 left-0 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl" />
-        <div className="absolute top-1/3 right-0 h-[400px] w-[400px] rounded-full bg-accent/5 blur-3xl" />
-      </div>
+      {/* WebGL Shader Background */}
+      <ShaderBackground />
+      
+      {/* Animated Glow Orbs */}
+      <GlowOrbs />
+      
+      {/* Mesh gradient overlay */}
+      <div className="absolute inset-0 -z-10 mesh-gradient" />
+      
+      {/* Noise texture for depth */}
+      <div className="absolute inset-0 -z-10 noise-overlay pointer-events-none" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-3xl text-center">
@@ -25,14 +32,18 @@ export function Hero() {
           {/* Main headline */}
           <h1 className="text-4xl font-bold tracking-tight sm:text-6xl lg:text-7xl text-balance leading-[1.1]">
             Video calls between{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-foreground">iPhone</span>
-              <span className="absolute bottom-2 left-0 right-0 h-3 bg-accent/20 -z-0 rounded-sm" />
+            <span className="relative inline-block group">
+              <span className="relative z-10 bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent animate-gradient-shift">
+                iPhone
+              </span>
+              <span className="absolute bottom-1 sm:bottom-2 left-0 right-0 h-2 sm:h-3 bg-gradient-to-r from-emerald-500/30 to-teal-500/30 -z-0 rounded-sm group-hover:from-emerald-500/50 group-hover:to-teal-500/50 transition-colors" />
             </span>{" "}
             <span className="text-muted-foreground">&</span>{" "}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-foreground">Android</span>
-              <span className="absolute bottom-2 left-0 right-0 h-3 bg-accent/20 -z-0 rounded-sm" />
+            <span className="relative inline-block group">
+              <span className="relative z-10 bg-gradient-to-r from-teal-500 via-emerald-500 to-green-500 bg-clip-text text-transparent animate-gradient-shift" style={{ animationDelay: "-4s" }}>
+                Android
+              </span>
+              <span className="absolute bottom-1 sm:bottom-2 left-0 right-0 h-2 sm:h-3 bg-gradient-to-r from-teal-500/30 to-emerald-500/30 -z-0 rounded-sm group-hover:from-teal-500/50 group-hover:to-emerald-500/50 transition-colors" />
             </span>
           </h1>
 
@@ -115,11 +126,26 @@ export function Hero() {
           {/* Connection indicator */}
           <div className="flex flex-col items-center gap-3 pb-12">
             <div className="relative flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-accent shadow-lg shadow-accent/50 animate-pulse" />
-              <div className="w-16 sm:w-24 h-1 bg-gradient-to-r from-accent via-accent/50 to-accent rounded-full" />
-              <div className="w-3 h-3 rounded-full bg-accent shadow-lg shadow-accent/50 animate-pulse" />
+              {/* Left pulse */}
+              <div className="relative">
+                <div className="absolute inset-0 w-4 h-4 rounded-full bg-emerald-400/50 animate-ping" />
+                <div className="relative w-4 h-4 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 shadow-lg shadow-emerald-500/50" />
+              </div>
+              
+              {/* Animated connection line */}
+              <div className="relative w-20 sm:w-28 h-1.5 rounded-full overflow-hidden bg-emerald-950/50">
+                <div className="absolute inset-0 bg-gradient-to-r from-emerald-400 via-teal-400 to-emerald-400 animate-shimmer" />
+              </div>
+              
+              {/* Right pulse */}
+              <div className="relative">
+                <div className="absolute inset-0 w-4 h-4 rounded-full bg-emerald-400/50 animate-ping" style={{ animationDelay: "0.5s" }} />
+                <div className="relative w-4 h-4 rounded-full bg-gradient-to-br from-teal-500 to-emerald-400 shadow-lg shadow-emerald-500/50" />
+              </div>
             </div>
-            <span className="text-xs font-medium text-accent uppercase tracking-wider">Live Connection</span>
+            <span className="text-xs font-semibold bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent uppercase tracking-widest">
+              Live Connection
+            </span>
           </div>
 
           {/* Android mockup */}

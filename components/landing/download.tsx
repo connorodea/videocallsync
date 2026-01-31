@@ -6,16 +6,21 @@ import { AppleIcon, GooglePlayIcon } from "@/components/icons/store-icons";
 export function Download() {
   return (
     <section id="download" className="py-24 lg:py-32 bg-gradient-to-b from-muted/30 to-background relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[600px] w-[800px] rounded-full bg-accent/5 blur-3xl" />
+      {/* Animated background decoration */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[700px] w-[900px] rounded-full bg-gradient-to-t from-emerald-500/10 to-teal-500/5 blur-3xl animate-pulse-glow" />
+        <div className="absolute top-1/4 left-1/4 h-[300px] w-[300px] rounded-full bg-emerald-500/5 blur-3xl animate-float" style={{ animationDelay: "-5s" }} />
+        <div className="absolute top-1/3 right-1/4 h-[250px] w-[250px] rounded-full bg-teal-500/5 blur-3xl animate-float" style={{ animationDelay: "-10s" }} />
       </div>
+      
+      {/* Mesh gradient overlay */}
+      <div className="absolute inset-0 -z-10 mesh-gradient opacity-50" />
 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-accent/20 bg-accent/5 px-4 py-2 text-sm mb-6">
-            <Sparkles className="h-4 w-4 text-accent" />
-            <span className="font-medium text-accent">Free Download</span>
+          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/20 bg-emerald-500/5 px-4 py-2 text-sm mb-6">
+            <Sparkles className="h-4 w-4 text-emerald-500 animate-pulse" />
+            <span className="font-medium bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">Free Download</span>
           </div>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-balance">
             Get VideoCallSync today
@@ -29,27 +34,31 @@ export function Download() {
           {/* App Store Button */}
           <Link
             href="https://apps.apple.com"
-            className="group relative inline-flex items-center gap-4 rounded-2xl bg-primary px-8 py-4 text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 hover:shadow-xl shadow-lg"
+            className="group relative inline-flex items-center gap-4 rounded-2xl bg-gradient-to-r from-primary to-primary/90 px-8 py-4 text-primary-foreground hover:from-primary/90 hover:to-primary/80 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/20 shadow-lg overflow-hidden"
           >
-            <AppleIcon className="h-10 w-10" />
-            <div className="text-left">
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+            <AppleIcon className="h-10 w-10 relative" />
+            <div className="text-left relative">
               <div className="text-xs opacity-70 font-medium uppercase tracking-wide">Download on the</div>
               <div className="text-xl font-bold -mt-0.5">App Store</div>
             </div>
-            <ArrowRight className="h-5 w-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+            <ArrowRight className="h-5 w-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all relative" />
           </Link>
 
           {/* Google Play Button */}
           <Link
             href="https://play.google.com"
-            className="group relative inline-flex items-center gap-4 rounded-2xl bg-primary px-8 py-4 text-primary-foreground hover:bg-primary/90 transition-all hover:scale-105 hover:shadow-xl shadow-lg"
+            className="group relative inline-flex items-center gap-4 rounded-2xl bg-gradient-to-r from-primary to-primary/90 px-8 py-4 text-primary-foreground hover:from-primary/90 hover:to-primary/80 transition-all hover:scale-105 hover:shadow-2xl hover:shadow-emerald-500/20 shadow-lg overflow-hidden"
           >
-            <GooglePlayIcon className="h-10 w-10" />
-            <div className="text-left">
+            {/* Shimmer effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-1000" />
+            <GooglePlayIcon className="h-10 w-10 relative" />
+            <div className="text-left relative">
               <div className="text-xs opacity-70 font-medium uppercase tracking-wide">Get it on</div>
               <div className="text-xl font-bold -mt-0.5">Google Play</div>
             </div>
-            <ArrowRight className="h-5 w-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all" />
+            <ArrowRight className="h-5 w-5 opacity-0 -ml-2 group-hover:opacity-100 group-hover:ml-0 transition-all relative" />
           </Link>
         </div>
 
