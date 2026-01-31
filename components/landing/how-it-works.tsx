@@ -33,16 +33,22 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-24 lg:py-32">
+    <section id="how-it-works" className="py-24 lg:py-32 relative overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[600px] w-[600px] rounded-full bg-emerald-500/5 blur-3xl" />
+      </div>
+      
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
-          <p className="inline-flex items-center gap-2 text-sm font-medium text-accent uppercase tracking-wide mb-4">
-            <span className="h-px w-6 bg-accent" />
-            How it Works
-            <span className="h-px w-6 bg-accent" />
+          <p className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-widest mb-6">
+            <span className="h-px w-8 bg-gradient-to-r from-transparent to-emerald-500" />
+            <span className="bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">How it Works</span>
+            <span className="h-px w-8 bg-gradient-to-r from-emerald-500 to-transparent" />
           </p>
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-balance">
-            Connect in four simple steps
+            Connect in{" "}
+            <span className="bg-gradient-to-r from-emerald-600 to-teal-500 bg-clip-text text-transparent">four simple steps</span>
           </h2>
           <p className="mt-6 text-lg text-muted-foreground text-pretty max-w-xl mx-auto">
             No accounts, no complicated setup. Just download, share a code, and start talking.
@@ -52,23 +58,32 @@ export function HowItWorks() {
         <div className="mx-auto mt-20 max-w-5xl">
           {/* Desktop layout */}
           <div className="hidden lg:block relative">
-            {/* Connection line */}
-            <div className="absolute top-12 left-[12.5%] right-[12.5%] h-0.5 bg-gradient-to-r from-border via-accent/30 to-border" />
+            {/* Animated connection line */}
+            <div className="absolute top-14 left-[12.5%] right-[12.5%] h-1 rounded-full overflow-hidden bg-border/50">
+              <div className="absolute inset-0 bg-gradient-to-r from-emerald-500 via-teal-400 to-emerald-500 animate-shimmer" />
+            </div>
             
             <div className="grid grid-cols-4 gap-8">
               {steps.map((step, index) => (
-                <div key={step.number} className="relative text-center group">
+                <div
+                  key={step.number}
+                  className="relative text-center group"
+                  style={{ animationDelay: `${index * 150}ms` }}
+                >
                   {/* Step circle */}
-                  <div className="relative mx-auto mb-6">
-                    <div className="flex h-24 w-24 items-center justify-center rounded-full bg-card border-2 border-border group-hover:border-accent transition-colors shadow-lg">
-                      <step.icon className="h-10 w-10 text-muted-foreground group-hover:text-accent transition-colors" />
+                  <div className="relative mx-auto mb-8">
+                    {/* Glow effect */}
+                    <div className="absolute inset-0 rounded-full bg-emerald-500/20 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 scale-150" />
+                    
+                    <div className="relative flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-b from-card to-card/80 border-2 border-border group-hover:border-emerald-500/50 transition-all duration-500 shadow-xl group-hover:shadow-emerald-500/20">
+                      <step.icon className="h-11 w-11 text-muted-foreground group-hover:text-emerald-500 transition-all duration-300 group-hover:scale-110" />
                     </div>
                     {/* Number badge */}
-                    <div className="absolute -top-2 -right-2 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-bold shadow-md">
+                    <div className="absolute -top-1 -right-1 flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 text-white text-sm font-bold shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
                       {index + 1}
                     </div>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
+                  <h3 className="text-lg font-semibold mb-2 group-hover:text-emerald-600 transition-colors">{step.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>

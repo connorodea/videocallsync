@@ -24,14 +24,21 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-muted/30">
+    <footer className="relative border-t border-border/50 bg-gradient-to-b from-muted/50 to-background overflow-hidden">
+      {/* Background decoration */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute bottom-0 left-1/4 h-[300px] w-[300px] rounded-full bg-emerald-500/5 blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 h-[250px] w-[250px] rounded-full bg-teal-500/5 blur-3xl" />
+      </div>
+      
       <div className="mx-auto max-w-7xl px-6 py-12 lg:px-8 lg:py-16">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-5">
           {/* Brand */}
           <div className="col-span-2">
-            <Link href="/" className="flex items-center gap-2.5 group">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary shadow-lg shadow-primary/20 group-hover:shadow-primary/30 transition-shadow">
-                <Video className="h-5 w-5 text-primary-foreground" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/25 group-hover:shadow-emerald-500/40 transition-all duration-300 group-hover:scale-105">
+                <Video className="h-5 w-5 text-white" />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent" />
               </div>
               <span className="text-xl font-bold tracking-tight">
                 VideoCallSync
@@ -45,14 +52,14 @@ export function Footer() {
             <div className="mt-6 flex items-center gap-3">
               <Link
                 href="https://apps.apple.com"
-                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
+                className="group flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-xs font-medium hover:from-emerald-600 hover:to-teal-600 transition-all shadow-lg shadow-emerald-500/20 hover:shadow-emerald-500/30"
               >
                 <AppleIcon className="h-4 w-4" />
                 App Store
               </Link>
               <Link
                 href="https://play.google.com"
-                className="flex items-center gap-2 px-3 py-2 rounded-lg bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
+                className="group flex items-center gap-2 px-4 py-2.5 rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 text-white text-xs font-medium hover:from-teal-600 hover:to-emerald-600 transition-all shadow-lg shadow-teal-500/20 hover:shadow-teal-500/30"
               >
                 <AndroidIcon className="h-4 w-4" />
                 Google Play
@@ -62,13 +69,13 @@ export function Footer() {
 
           {/* Product links */}
           <div>
-            <h3 className="text-sm font-semibold">Product</h3>
+            <h3 className="text-sm font-semibold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">Product</h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.product.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-emerald-500 transition-colors duration-300"
                   >
                     {link.name}
                   </Link>
@@ -79,13 +86,13 @@ export function Footer() {
 
           {/* Company links */}
           <div>
-            <h3 className="text-sm font-semibold">Company</h3>
+            <h3 className="text-sm font-semibold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">Company</h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-emerald-500 transition-colors duration-300"
                   >
                     {link.name}
                   </Link>
@@ -96,13 +103,13 @@ export function Footer() {
 
           {/* Legal links */}
           <div>
-            <h3 className="text-sm font-semibold">Legal</h3>
+            <h3 className="text-sm font-semibold bg-gradient-to-r from-foreground to-foreground/80 bg-clip-text">Legal</h3>
             <ul className="mt-4 space-y-3">
               {footerLinks.legal.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                    className="text-sm text-muted-foreground hover:text-emerald-500 transition-colors duration-300"
                   >
                     {link.name}
                   </Link>
@@ -112,16 +119,16 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="mt-12 border-t border-border/50 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} VideoCallSync. All rights reserved.
           </p>
           <div className="flex items-center gap-4">
             <span className="text-xs text-muted-foreground">Available on</span>
-            <div className="flex items-center gap-2 text-muted-foreground">
-              <AppleIcon className="h-4 w-4" />
-              <AndroidIcon className="h-4 w-4" />
-              <Video className="h-4 w-4" />
+            <div className="flex items-center gap-3 text-muted-foreground">
+              <AppleIcon className="h-5 w-5 hover:text-emerald-500 transition-colors cursor-pointer" />
+              <AndroidIcon className="h-5 w-5 hover:text-emerald-500 transition-colors cursor-pointer" />
+              <Video className="h-5 w-5 hover:text-emerald-500 transition-colors cursor-pointer" />
             </div>
           </div>
         </div>
