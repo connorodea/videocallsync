@@ -3,9 +3,10 @@
 import React from "react"
 
 import { useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Video, ArrowRight, Loader2 } from "lucide-react";
+import { Video, ArrowRight, Loader2, ArrowLeft } from "lucide-react";
 
 interface JoinRoomProps {
   onJoin: (roomId: string) => void;
@@ -30,6 +31,16 @@ export function JoinRoom({ onJoin, isLoading, error }: JoinRoomProps) {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4">
+      {/* Back link */}
+      <div className="absolute top-6 left-6">
+        <Button variant="ghost" size="sm" asChild className="gap-2 text-muted-foreground hover:text-foreground">
+          <Link href="/">
+            <ArrowLeft className="h-4 w-4" />
+            Back to Home
+          </Link>
+        </Button>
+      </div>
+
       <div className="w-full max-w-md space-y-8">
         {/* Logo and Header */}
         <div className="text-center">

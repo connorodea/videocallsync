@@ -22,29 +22,33 @@ export function VideoCall() {
 
   if (callState === "idle") {
     return (
-      <JoinRoom
-        onJoin={joinRoom}
-        isLoading={false}
-        error={error}
-      />
+      <div className="dark min-h-screen bg-[#0a0a0a] text-white">
+        <JoinRoom onJoin={joinRoom} isLoading={false} error={error} />
+      </div>
     );
   }
 
   if (callState === "ended") {
-    return <CallEnded onNewCall={leaveRoom} />;
+    return (
+      <div className="dark min-h-screen bg-[#0a0a0a] text-white">
+        <CallEnded onNewCall={leaveRoom} />
+      </div>
+    );
   }
 
   return (
-    <CallView
-      callState={callState}
-      localStream={localStream}
-      remoteStream={remoteStream}
-      roomId={roomId}
-      isMuted={isMuted}
-      isCameraOff={isCameraOff}
-      onToggleMute={toggleMute}
-      onToggleCamera={toggleCamera}
-      onHangUp={leaveRoom}
-    />
+    <div className="dark min-h-screen bg-[#0a0a0a] text-white">
+      <CallView
+        callState={callState}
+        localStream={localStream}
+        remoteStream={remoteStream}
+        roomId={roomId}
+        isMuted={isMuted}
+        isCameraOff={isCameraOff}
+        onToggleMute={toggleMute}
+        onToggleCamera={toggleCamera}
+        onHangUp={leaveRoom}
+      />
+    </div>
   );
 }
