@@ -3,7 +3,7 @@
 import { VideoStream } from "@/components/video-stream";
 import { CallControls } from "@/components/call-controls";
 import { CallState } from "@/hooks/use-video-call";
-import { Loader2, Users, Copy, Check } from "lucide-react";
+import { Loader2, Users, Copy, Check, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 
@@ -43,7 +43,7 @@ export function CallView({
   const isConnected = callState === "connected";
 
   return (
-    <div className="relative flex h-screen flex-col bg-background">
+    <div className="relative flex h-screen flex-col bg-zinc-950">
       {/* Main Video Area */}
       <div className="relative flex-1">
         {isConnected && remoteStream ? (
@@ -53,47 +53,59 @@ export function CallView({
             label="Remote"
           />
         ) : (
-          <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-secondary">
+          <div className="flex h-full w-full flex-col items-center justify-center gap-6 bg-gradient-to-br from-zinc-900 to-zinc-950">
+            {/* Background decoration */}
+            <div className="absolute inset-0 -z-10 overflow-hidden">
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] rounded-full bg-emerald-500/5 blur-3xl" />
+            </div>
+
             {isWaiting && (
               <>
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-card">
-                  <Users className="h-12 w-12 text-muted-foreground" />
+                <div className="flex h-28 w-28 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 ring-2 ring-emerald-500/30">
+                  <Users className="h-14 w-14 text-emerald-400/60" />
                 </div>
                 <div className="text-center">
-                  <h2 className="text-xl font-semibold text-foreground">
+                  <h2 className="text-xl font-semibold text-white">
                     Waiting for peer to join
                   </h2>
-                  <p className="mt-1 text-muted-foreground">
+                  <p className="mt-2 text-zinc-400">
                     Share this room code with your peer
                   </p>
                 </div>
-                <div className="flex items-center gap-2 rounded-xl bg-card px-4 py-3">
-                  <span className="font-mono text-2xl font-bold tracking-widest text-foreground">
-                    {roomId}
+                <div className="flex items-center gap-3 rounded-2xl bg-white/5 border border-white/10 px-6 py-4">
+                  <span className="font-mono text-3xl font-bold tracking-[0.3em] text-white">
+                    {roomId.toUpperCase()}
                   </span>
                   <Button
                     variant="ghost"
                     size="icon"
                     onClick={copyRoomCode}
-                    className="h-8 w-8"
+                    className="h-10 w-10 hover:bg-white/10 text-zinc-400 hover:text-white"
                   >
                     {copied ? (
-                      <Check className="h-4 w-4 text-success" />
+                      <Check className="h-5 w-5 text-emerald-400" />
                     ) : (
-                      <Copy className="h-4 w-4" />
+                      <Copy className="h-5 w-5" />
                     )}
                   </Button>
                 </div>
+                <p className="text-xs text-zinc-500 flex items-center gap-1.5">
+                  <Shield className="h-3 w-3" />
+                  End-to-end encrypted
+                </p>
               </>
             )}
             {isConnecting && (
               <>
-                <Loader2 className="h-16 w-16 animate-spin text-accent" />
+                <div className="relative">
+                  <div className="absolute inset-0 rounded-full bg-emerald-500/20 animate-ping" />
+                  <Loader2 className="h-16 w-16 animate-spin text-emerald-400 relative" />
+                </div>
                 <div className="text-center">
-                  <h2 className="text-xl font-semibold text-foreground">
+                  <h2 className="text-xl font-semibold text-white">
                     Connecting...
                   </h2>
-                  <p className="mt-1 text-muted-foreground">
+                  <p className="mt-2 text-zinc-400">
                     Establishing secure connection
                   </p>
                 </div>
@@ -109,23 +121,32 @@ export function CallView({
             muted
             isLocal
             isCameraOff={isCameraOff}
-            className="h-32 w-24 rounded-xl border-2 border-border shadow-lg md:h-48 md:w-36"
+            className="h-36 w-28 rounded-2xl border-2 border-white/20 shadow-2xl shadow-black/50 md:h-48 md:w-36"
             label="You"
           />
         </div>
 
         {/* Room ID Badge */}
-        <div className="absolute left-4 top-4 flex items-center gap-2 rounded-lg bg-card/90 px-3 py-2 backdrop-blur-sm">
-          <div className="h-2 w-2 rounded-full bg-success animate-pulse" />
-          <span className="font-mono text-sm font-medium text-foreground">
-            {roomId}
+        <div className="absolute left-4 top-4 flex items-center gap-2 rounded-xl bg-black/40 backdrop-blur-md px-4 py-2.5 border border-white/10">
+          <div className="h-2 w-2 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/50 animate-pulse" />
+          <span className="font-mono text-sm font-medium text-white tracking-wider">
+            {roomId.toUpperCase()}
           </span>
         </div>
 
         {/* Call Duration / Status */}
-        <div className="absolute right-4 top-4 rounded-lg bg-card/90 px-3 py-2 backdrop-blur-sm">
-          <span className="text-sm text-foreground">
-            {isConnected ? "Connected" : isConnecting ? "Connecting..." : "Waiting..."}
+        <div className="absolute right-4 top-4 rounded-xl bg-black/40 backdrop-blur-md px-4 py-2.5 border border-white/10">
+          <span className="text-sm text-white font-medium">
+            {isConnected ? (
+              <span className="flex items-center gap-2">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                Connected
+              </span>
+            ) : isConnecting ? (
+              "Connecting..."
+            ) : (
+              "Waiting..."
+            )}
           </span>
         </div>
       </div>

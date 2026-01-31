@@ -2,13 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import {
-  Mic,
-  MicOff,
-  Video,
-  VideoOff,
-  PhoneOff,
-} from "lucide-react";
+import { Mic, MicOff, Video, VideoOff, PhoneOff } from "lucide-react";
 
 interface CallControlsProps {
   isMuted: boolean;
@@ -30,16 +24,17 @@ export function CallControls({
   return (
     <div
       className={cn(
-        "flex items-center justify-center gap-4 rounded-2xl bg-card/90 px-6 py-4 backdrop-blur-md",
+        "flex items-center justify-center gap-3 rounded-2xl bg-black/40 backdrop-blur-xl px-5 py-4 border border-white/10",
         className
       )}
     >
       <Button
-        variant="secondary"
         size="lg"
         className={cn(
-          "h-14 w-14 rounded-full transition-all",
-          isMuted && "bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          "h-14 w-14 rounded-full transition-all border-0",
+          isMuted
+            ? "bg-red-500 text-white hover:bg-red-600"
+            : "bg-white/10 text-white hover:bg-white/20"
         )}
         onClick={onToggleMute}
       >
@@ -48,11 +43,12 @@ export function CallControls({
       </Button>
 
       <Button
-        variant="secondary"
         size="lg"
         className={cn(
-          "h-14 w-14 rounded-full transition-all",
-          isCameraOff && "bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          "h-14 w-14 rounded-full transition-all border-0",
+          isCameraOff
+            ? "bg-red-500 text-white hover:bg-red-600"
+            : "bg-white/10 text-white hover:bg-white/20"
         )}
         onClick={onToggleCamera}
       >
@@ -61,13 +57,14 @@ export function CallControls({
         ) : (
           <Video className="h-6 w-6" />
         )}
-        <span className="sr-only">{isCameraOff ? "Turn camera on" : "Turn camera off"}</span>
+        <span className="sr-only">
+          {isCameraOff ? "Turn camera on" : "Turn camera off"}
+        </span>
       </Button>
 
       <Button
-        variant="destructive"
         size="lg"
-        className="h-14 w-14 rounded-full"
+        className="h-14 w-14 rounded-full bg-red-500 hover:bg-red-600 text-white border-0 ml-2"
         onClick={onHangUp}
       >
         <PhoneOff className="h-6 w-6" />
