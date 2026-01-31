@@ -1,4 +1,7 @@
+"use client";
+
 import { Smartphone, Zap, Shield, Globe, Users, Sparkles } from "lucide-react";
+import { ScrollReveal, StaggerContainer } from "./scroll-reveal";
 
 const features = [
   {
@@ -66,7 +69,7 @@ export function Features() {
       </div>
       
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-2 text-sm font-medium uppercase tracking-wide mb-4">
             <span className="h-px w-6 bg-gradient-to-r from-transparent to-emerald-500" />
             <span className="bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">Features</span>
@@ -79,15 +82,16 @@ export function Features() {
           <p className="mt-6 text-lg text-muted-foreground text-pretty max-w-xl mx-auto">
             Built with WebRTC technology for the most reliable and secure video calling experience across all platforms.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="mx-auto mt-16 max-w-5xl">
-          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+          <StaggerContainer className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {features.map((feature, index) => (
-              <div
+              <ScrollReveal
                 key={feature.name}
-                className="group relative rounded-2xl border border-white/40 bg-white/60 backdrop-blur-xl p-6 hover:border-emerald-500/40 hover:bg-white/80 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500"
-                style={{ animationDelay: `${index * 100}ms` }}
+                variant="glass"
+                delay={index * 100}
+                className="group relative p-6 hover:border-emerald-500/40 hover:bg-white/80 hover:shadow-2xl hover:shadow-emerald-500/10 transition-all duration-500"
               >
                 {/* Inner glow */}
                 <div className="absolute inset-0 -z-10 rounded-2xl bg-gradient-to-br from-white/80 via-transparent to-emerald-50/50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
@@ -104,9 +108,9 @@ export function Features() {
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                   {feature.description}
                 </p>
-              </div>
+              </ScrollReveal>
             ))}
-          </div>
+          </StaggerContainer>
         </div>
       </div>
     </section>

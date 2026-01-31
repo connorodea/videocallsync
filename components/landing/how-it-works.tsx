@@ -1,4 +1,7 @@
+"use client";
+
 import { Download, Hash, Share2, Video } from "lucide-react";
+import { ScrollReveal } from "./scroll-reveal";
 
 const steps = [
   {
@@ -50,7 +53,7 @@ export function HowItWorks() {
       </div>
       
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center">
+        <ScrollReveal className="mx-auto max-w-2xl text-center">
           <p className="inline-flex items-center gap-3 text-sm font-semibold uppercase tracking-widest mb-6">
             <span className="h-px w-8 bg-gradient-to-r from-transparent to-emerald-500" />
             <span className="bg-gradient-to-r from-emerald-500 to-teal-500 bg-clip-text text-transparent">How it Works</span>
@@ -63,7 +66,7 @@ export function HowItWorks() {
           <p className="mt-6 text-lg text-muted-foreground text-pretty max-w-xl mx-auto">
             No accounts, no complicated setup. Just download, share a code, and start talking.
           </p>
-        </div>
+        </ScrollReveal>
 
         <div className="mx-auto mt-20 max-w-5xl">
           {/* Desktop layout */}
@@ -75,10 +78,10 @@ export function HowItWorks() {
             
             <div className="grid grid-cols-4 gap-8">
               {steps.map((step, index) => (
-                <div
+                <ScrollReveal
                   key={step.number}
+                  delay={index * 150}
                   className="relative text-center group"
-                  style={{ animationDelay: `${index * 150}ms` }}
                 >
                   {/* Step circle */}
                   <div className="relative mx-auto mb-8">
@@ -98,7 +101,7 @@ export function HowItWorks() {
                   <p className="text-sm text-muted-foreground leading-relaxed">
                     {step.description}
                   </p>
-                </div>
+                </ScrollReveal>
               ))}
             </div>
           </div>

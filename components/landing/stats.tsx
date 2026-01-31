@@ -1,4 +1,7 @@
+"use client";
+
 import { Users, Phone, Clock, Star } from "lucide-react";
+import { ScrollReveal } from "./scroll-reveal";
 
 const stats = [
   { value: "50K+", label: "Active Users", icon: Users },
@@ -33,10 +36,14 @@ export function Stats() {
       <div className="mx-auto max-w-7xl px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-4">
           {stats.map((stat, index) => (
-            <div key={stat.label} className="text-center group">
+            <ScrollReveal
+              key={stat.label}
+              variant="scale"
+              delay={index * 150}
+              className="text-center group"
+            >
               <div 
                 className="inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 backdrop-blur-sm mb-4 group-hover:scale-110 group-hover:bg-white/15 transition-all duration-300 ring-1 ring-white/20 shadow-lg shadow-emerald-500/10"
-                style={{ animationDelay: `${index * 200}ms` }}
               >
                 <stat.icon className="h-7 w-7 text-white" aria-hidden="true" />
               </div>
@@ -46,7 +53,7 @@ export function Stats() {
               <div className="mt-2 text-sm text-white/60 font-medium">
                 {stat.label}
               </div>
-            </div>
+            </ScrollReveal>
           ))}
         </div>
       </div>

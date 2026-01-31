@@ -1,9 +1,12 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Video, User } from "lucide-react";
 import { AppleIcon, AndroidIcon } from "@/components/icons/store-icons";
 import { ShaderBackground } from "./shader-background";
 import { GlowOrbs } from "./glow-orbs";
+import { ScrollReveal } from "./scroll-reveal";
 
 export function Hero() {
   return (
@@ -99,7 +102,7 @@ export function Hero() {
         </div>
 
         {/* Phone mockups */}
-        <div className="mt-20 flex items-end justify-center gap-6 sm:gap-10 lg:gap-16 perspective-1000">
+        <ScrollReveal className="mt-20 flex items-end justify-center gap-6 sm:gap-10 lg:gap-16 perspective-1000" threshold={0.05}>
           {/* iPhone mockup */}
           <div className="relative -rotate-6 hover:rotate-0 transition-all duration-700 ease-out hover:scale-105 animate-float-slow" style={{ animationDelay: "0s" }}>
             {/* Glow effect behind phone */}
@@ -231,10 +234,10 @@ export function Hero() {
               <span className="text-sm font-semibold">Android</span>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Social proof */}
-        <div className="mt-24 text-center">
+        <ScrollReveal variant="scale" className="mt-24 text-center">
           <div className="inline-flex flex-col items-center gap-6 px-8 py-6 rounded-3xl bg-white/70 backdrop-blur-xl border border-white/50 shadow-xl shadow-emerald-500/5">
             <p className="text-sm text-muted-foreground font-medium">Trusted by users worldwide</p>
             <div className="flex items-center justify-center gap-1">
@@ -266,7 +269,7 @@ export function Hero() {
               </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );
